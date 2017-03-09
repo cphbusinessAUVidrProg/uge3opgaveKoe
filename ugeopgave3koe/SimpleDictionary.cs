@@ -12,12 +12,6 @@ namespace ugeopgave3koe
 		Pair[] arr;
 		int top;
 
-		public int get(string key)
-		{
-			int index = find(key);
-			if (index >= 0) return arr[index].Value;
-			throw new IndexOutOfRangeException();
-		}
 
 		public bool hasKey(string key)
 		{
@@ -26,10 +20,17 @@ namespace ugeopgave3koe
 
 		public bool isEmpty()
 		{
-			return top >= 0;
+			return top < 0;
 		}
 
-		public void set(string key, int value)
+		public int Get(string key)
+		{
+			int index = find(key);
+			if (index >= 0) return arr[index].Value;
+			throw new IndexOutOfRangeException();
+		}
+
+		public void Set(string key, int value)
 		{
 			if (top > arr.Length * 3 / 4) 
 				extend();
@@ -56,7 +57,7 @@ namespace ugeopgave3koe
 		}
 	}
 
-	public class Pair
+	class Pair
 	{
 		public Pair(string key, int value)
 		{

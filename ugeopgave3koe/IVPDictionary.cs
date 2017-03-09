@@ -5,7 +5,8 @@ namespace ugeopgave3koe
 	{// VP for videregående programmering
 		bool isEmpty();
 		bool hasKey(String key);
-		int get(String key);
-		void set(String key, int value);
+			
+		int Get(String key);
+		void Set(String key, int value);
 	}
 }

@@ -1,9 +1,10 @@
 ﻿using System;
 namespace ugeopgave3koe
 {
-	public class HashingDictionary :IVPDictionary
+	public class HashingDictionary : IVPDictionary
 	{
-		public HashingDictionary(){
+		public HashingDictionary()
+		{
 			size = 0; // 
 			arr = new Pair[20];
 		}
@@ -13,32 +14,32 @@ namespace ugeopgave3koe
 
 		public bool hasKey(string key)
 		{
-			return arr[find(key)] != null;
+			return arr[Find(key)] != null;
 		}
 
 		public bool isEmpty()
 		{
-			return size > 0;
+			return size == 0;
 		}
 
-		public int get(string key)
-		{
-			Pair res = arr[find(key)];
-			if (res != null)
-				return res.Value;
-			throw new IndexOutOfRangeException();
-		}
+		public int Get (String key)
+			{
+				Pair res = arr[Find(key)];
+				if (res != null)
+					return res.Value;
+				throw new IndexOutOfRangeException();
+			}
 
-		public void set(string key, int value)
-		{
+		public void Set(String key, int val)
+			{
 			size++;
 			if (size > arr.Length * 3 / 4)
-				extend();
-			int here = find(key);
-			arr[here] = new Pair(key, value);
-		}
+				Extend();
+			int here = Find(key);
+			arr[here] = new Pair(key, val);
+			}
 
-		private int find(string key)
+		private int Find(string key)
 		{
 			int h = key.GetHashCode();
 			int index = h % arr.Length;
@@ -47,18 +48,16 @@ namespace ugeopgave3koe
 				index = (index + 1) % arr.Length;
 			return index;
 		}
-
-		private void extend()
+		private void Extend()
 		{
 			int newLength = arr.Length * 3 / 2;
 			Pair[] oldArray = arr;
 			arr = new Pair[newLength];
-			for (int oldIndex = 0; oldIndex < oldArray.Length; oldIndex++)
+			foreach (Pair p in oldArray)
 			{
-				Pair p = oldArray[oldIndex];
 				if (p != null)
 				{
-					set(p.Key, p.Value);
+					Set(p.Key, p.Value);
 				}
 			}
 		}
