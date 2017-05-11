@@ -20,6 +20,7 @@ namespace ugeopgave3koe
 				dict.Set(mykey, k * 10) ; // just some value
 			}
 			Console.WriteLine("mykey77 stores: " + dict.Get("mykey77"));
+            Console.ReadLine();
 		}
 	}
 }
